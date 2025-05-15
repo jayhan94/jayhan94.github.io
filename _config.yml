@@ -1,0 +1,8 @@
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+
+title: [编程西行记]
+tagline: [编程相关的技术博客]
+description: [博客内容主要是计算机编程相关, 重点关注基础芝士, 以及数据领域相关技术.]
+show_downloads: false
