@@ -12,21 +12,27 @@ description: 编程相关的技术博客
 
 欢迎阅读.
 
-## 最新文章
+## 文章分类
 
-<div class="post-list">
-{% for post in site.posts %}
-  <article class="post-item">
-    <h2 class="post-title">
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </h2>
-    <div class="post-meta">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y年%m月%d日" }}</time>
+{% assign categories = site.posts | group_by: "category" %}
+{% for category in categories %}
+  <div class="category-section">
+    <h2 class="category-title">{{ category.name }}</h2>
+    <div class="post-list">
+      {% for post in category.items %}
+        <article class="post-item">
+          <h3 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h3>
+          <div class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y年%m月%d日" }}</time>
+          </div>
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 50 }}
+          </div>
+          <a href="{{ post.url | relative_url }}" class="read-more">阅读更多 →</a>
+        </article>
+      {% endfor %}
     </div>
-    <div class="post-excerpt">
-      {{ post.excerpt | strip_html | truncatewords: 50 }}
-    </div>
-    <a href="{{ post.url | relative_url }}" class="read-more">阅读更多 →</a>
-  </article>
-{% endfor %}
-</div> 
+  </div>
+{% endfor %} 
